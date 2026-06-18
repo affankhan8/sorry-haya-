@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Queen 💗</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffb6c1,#ffd6e7);
+    overflow:hidden;
+}
+
+/* Floating Hearts */
+.hearts{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.heart{
+    position:absolute;
+    color:#ff4d88;
+    font-size:20px;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh) scale(0.5);
+        opacity:0;
+    }
+    20%{opacity:1;}
+    to{
+        transform:translateY(-120px) scale(1.5);
+        opacity:0;
+    }
+}
+
+.container{
+    position:relative;
+    width:350px;
+    height:250px;
+    cursor:pointer;
+}
+
+/* Envelope */
+.envelope{
+    position:absolute;
+    width:100%;
+    height:220px;
+    bottom:0;
+}
+
+.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ff7aa2;
+    border-radius:0 0 10px 10px;
+}
+
+.front{
+    position:absolute;
+    width:0;
+    height:0;
+    border-left:175px solid transparent;
+    border-right:175px solid transparent;
+    border-bottom:110px solid #ff5c8a;
+    top:110px;
+    z-index:5;
+}
+
+.flap{
+    position:absolute;
+    width:0;
+    height:0;
+    border-left:175px solid transparent;
+    border-right:175px solid transparent;
+    border-top:110px solid #ff94b8;
+    transform-origin:top;
+    transition:1s;
+    z-index:6;
+}
+
+.tap-text{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    top:130px;
+    color:white;
+    font-weight:bold;
+    z-index:10;
+    font-size:18px;
+}
+
+/* Letter */
+.letter{
+    position:absolute;
+    left:15px;
+    bottom:20px;
+    width:320px;
+    height:200px;
+    background:white;
+    border-radius:10px;
+    padding:18px;
+    overflow:auto;
+    transition:1.2s;
+    z-index:2;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.letter h2{
+    text-align:center;
+    color:#ff4d88;
+    margin-bottom:10px;
+}
+
+.letter p{
+    font-size:15px;
+    line-height:1.5;
+    color:#444;
+}
+
+/* Open Animation */
+.container.open .flap{
+    transform:rotateX(180deg);
+    z-index:1;
+}
+
+.container.open .letter{
+    transform:translateY(-180px);
+}
+
+.signature{
+    margin-top:12px;
+    text-align:right;
+    color:#ff4d88;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<div class="container" id="card">
+
+    <div class="letter">
+        <h2>💗 Sorry Haya 💗</h2>
+
+        <p>
+            Haya I'm sorry for last night, mere se bht bari mistake hgyi.
+            Tumhe insult feel karaya.
+            I swear me esa krna nhi chahta tha,
+            meri kabhi esi intention nhi thi sweetheart.
+            <br><br>
+
+            I'm so sorry, so sorry for it and I regret it.
+            Kabhi bhi ainda ese tumhe nahi khunga.
+            Please forgive me aur naraz mat hona.
+            <br><br>
+
+            Pta hai disheart to hui hogi,
+            to dil wapis jor lo please 🥺💗
+            Aur Jhaplu ko maaf kr do Rasmalaiii 💟
+        </p>
+
+        <div class="signature">
+            ❤️ Forever Sorry ❤️
+        </div>
+    </div>
+
+    <div class="envelope">
+        <div class="back"></div>
+        <div class="flap"></div>
+        <div class="front"></div>
+        <div class="tap-text">👑 Tap the card to open it Queen 👑</div>
+    </div>
+
+</div>
+
+<script>
+const card = document.getElementById('card');
+
+card.addEventListener('click',()=>{
+    card.classList.toggle('open');
+});
+
+const heartsContainer = document.querySelector('.hearts');
+
+function createHeart(){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+
+    const hearts = ['💗','💖','💘','💕','💞','💓','💟'];
+    heart.innerHTML = hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.animationDuration = (5 + Math.random()*5) + 's';
+    heart.style.fontSize = (15 + Math.random()*25) + 'px';
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+}
+
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
